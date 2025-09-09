@@ -3,387 +3,884 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market Diner • Pike Place Market, Seattle</title>
-    <meta name="description" content="Market Diner • Full Menu • Hours • Contact • Best classic American breakfast, burgers, seafood, salads, and more in Seattle, WA.">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <title>Market Diner - Pike Place Market, Seattle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #ff6565;
-            --secondary: #222f3e;
-            --accent: #ffd460;
-            --bg: #f3f3f3;
-            --white: #fff;
-            --shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
         * {
-            margin: 0; padding: 0;
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: 'Roboto', Arial, Helvetica, sans-serif;
-            background: var(--bg);
-            color: var(--secondary);
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            min-height: 100vh;
         }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
         header {
-            background: linear-gradient(90deg, var(--primary) 0%, #ff9a9e 100%);
-            color: var(--white);
-            padding: 2rem 0 1rem 0;
-            text-align: center;
-            position: relative;
-            box-shadow: var(--shadow);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
-        header .logo-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: var(--shadow);
-            margin-bottom: .75rem;
-        }
-        header h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.25rem;
-            letter-spacing: 2px;
-            margin-bottom: .25rem;
-        }
-        header p {
-            font-size: 1.13rem;
-            font-family: 'Roboto', sans-serif;
-        }
+
         nav {
-            background: var(--white);
-            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 107, 107, 0.8), rgba(254, 202, 87, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23ff6b6b" width="1200" height="600"/><circle fill="%23feca57" cx="300" cy="150" r="100" opacity="0.7"/><circle fill="%23ff9ff3" cx="900" cy="400" r="150" opacity="0.5"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #ff6b6b;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Info Cards */
+        .info-cards {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .info-card i {
+            font-size: 3rem;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #feca57, #ff6b6b);
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .menu-tabs {
             display: flex;
             justify-content: center;
-            font-family: 'Montserrat', sans-serif;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
         }
-        nav a {
-            color: var(--primary);
-            text-decoration: none;
-            padding: 1rem;
-            font-size: 1.1rem;
-            transition: all .2s;
+
+        .tab-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
-        nav a:hover, nav a.active {
-            color: var(--secondary);
-            background: var(--accent);
-            border-radius: .5rem .5rem 0 0;
+
+        .tab-button.active,
+        .tab-button:hover {
+            background: white;
+            color: #ff6b6b;
         }
-        .container {
-            max-width: 950px;
-            margin: 1.5rem auto;
-            padding: 1rem;
-            background: var(--white);
-            border-radius: 18px;
-            box-shadow: var(--shadow);
+
+        .menu-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-height: 600px;
+            overflow-y: auto;
         }
-        section {
-            margin-bottom: 2.5rem;
-        }
-        h2 {
-            font-family: 'Montserrat',sans-serif;
-            font-size: 1.7rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            margin-top: .5rem;
-        }
-        h3 {
-            font-family: 'Montserrat',sans-serif;
-            color: var(--secondary);
-            font-size: 1.18rem;
-            margin:1.3rem 0 .3rem 0;
-            border-left: 5px solid var(--accent);
-            padding-left: .75rem;
-        }
-        .menu-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 2rem;
-        }
-        .menu-table th,
-        .menu-table td {
-            padding: .95rem .7rem;
-            border-bottom: 1px solid #ececec;
-            font-size: 1.02rem;
-        }
-        .menu-table th {
-            background: var(--accent);
-            color: var(--secondary);
-            font-weight: 700;
-        }
-        .menu-table td.price {
-            text-align: right;
-            font-weight: 500;
-            color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-        }
+
         .menu-category {
-            margin-top: 2.2rem;
+            display: none;
         }
-        .hours, .contact, .address, .note {
-            background: var(--accent);
-            padding: 1rem;
-            border-radius: 10px;
-            font-size: 1.17rem;
-            margin-bottom: .6rem;
-        }
-        .closed {
-            color: #fff;
-            background: var(--primary);
-            font-weight: bold;
-        }
-        .map {
-            width: 100%;
-            max-width: 480px;
-            border: 2px solid var(--primary);
-            border-radius: 12px;
-            margin: 1.5rem auto;
+
+        .menu-category.active {
             display: block;
         }
-        .footer {
-            width: 100%;
-            padding: 1.2rem;
-            background: var(--secondary);
-            color: var(--white);
-            text-align: center;
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            transition: background 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background: #f8f9fa;
+            padding-left: 1rem;
+            border-radius: 10px;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .menu-item-price {
+            color: #ff6b6b;
+            font-weight: 700;
             font-size: 1.1rem;
-            border-radius: 0 0 18px 18px;
         }
-        /* Mobile Styles */
-        @media (max-width: 700px) {
-            header h1 { font-size: 1.5rem; }
-            nav { flex-direction: column; }
-            nav a { font-size: 1rem; border-radius: 0; padding: .8rem; }
-            .container { padding: .4rem .1rem; }
-            h2 { font-size: 1.18rem; }
-            h3 { font-size: .98rem; }
-            .menu-table th, .menu-table td { font-size: .98rem; padding: .77rem .3rem; }
-            .map { max-width: 98%; }
+
+        .menu-item-prices {
+            display: flex;
+            gap: 1rem;
         }
-        /* Enhance touch targets */
-        @media (max-width: 400px) {
-            .menu-table th, .menu-table td { font-size: .90rem; }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.95);
         }
-        /* Eye-capturing accent underline hover for nav */
-        nav a:hover, nav a.active {
-            border-bottom: 3px solid var(--primary);
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .menu-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu-content {
+                padding: 2rem 1rem;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
         }
     </style>
-    <script>
-        function showSection(id) {
-            const sections = document.querySelectorAll('.menu-section');
-            sections.forEach(s => s.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
-            // Highlight nav link
-            document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
-            document.querySelector('nav a[data-link="' + id + '"]').classList.add('active');
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-        document.addEventListener("DOMContentLoaded",()=>{
-            showSection('breakfast');
-        });
-    </script>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <!-- Logo Imagery -->
-        <img src="https://i.imgur.com/hRy5FaB.png" alt="Market Diner Logo" class="logo-img">
-        <h1>Market Diner</h1>
-        <p>Classic American Eats • Pike Place Market, Seattle</p>
+        <nav class="container">
+            <a href="#" class="logo">🍽️ Market Diner</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
     </header>
-    <nav>
-        <a href="javascript:void(0)" data-link="breakfast" onclick="showSection('breakfast')">Breakfast</a>
-        <a href="javascript:void(0)" data-link="lunch" onclick="showSection('lunch')">Lunch & Sandwiches</a>
-        <a href="javascript:void(0)" data-link="seafood" onclick="showSection('seafood')">Seafood</a>
-        <a href="javascript:void(0)" data-link="salad_wraps" onclick="showSection('salad_wraps')">Salad Wraps</a>
-        <a href="javascript:void(0)" data-link="appetizers" onclick="showSection('appetizers')">Appetizers</a>
-        <a href="javascript:void(0)" data-link="soup_salad" onclick="showSection('soup_salad')">Soup & Salad</a>
-        <a href="javascript:void(0)" data-link="drinks" onclick="showSection('drinks')">Drinks</a>
-        <a href="javascript:void(0)" data-link="info" onclick="showSection('info')">Info</a>
-    </nav>
-    <div class="container">
 
-        <!-- Breakfast Section -->
-        <section id="breakfast" class="menu-section">
-            <h2>Breakfast</h2>
-            <h3>Main Items <span style="font-size:.95rem;font-weight:400;">(All served with Hash Browns)</span></h3>
-            <table class="menu-table">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th class="price">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Eggs Benedict</td><td class="price">$19.99</td></tr>
-                    <tr><td>Crab Eggs Benedict</td><td class="price">$24.99</td></tr>
-                    <tr><td>Salmon Benedict</td><td class="price">$21.99</td></tr>
-                    <tr><td>Denver Omelette</td><td class="price">$18.99</td></tr>
-                    <tr><td>Cheese Omelette</td><td class="price">$15.99</td></tr>
-                    <tr><td>Crab Avocado Omelette</td><td class="price">$24.99</td></tr>
-                    <tr><td>Bacon & Eggs</td><td class="price">$16.99</td></tr>
-                    <tr><td>Pancakes & Eggs</td><td class="price">$15.99</td></tr>
-                    <tr><td>French Toast & Eggs</td><td class="price">$15.99</td></tr>
-                </tbody>
-            </table>
-            <h3>Breakfast Sides</h3>
-            <table class="menu-table">
-                <tbody>
-                    <tr><td>Eggs</td><td class="price">$7.50</td></tr>
-                    <tr><td>Bacon, sausage or ham</td><td class="price">$7.50</td></tr>
-                    <tr><td>Hash Browns</td><td class="price">$6.50</td></tr>
-                    <tr><td>Pancakes</td><td class="price">$9.50</td></tr>
-                    <tr><td>French Toast</td><td class="price">$9.50</td></tr>
-                </tbody>
-            </table>
-        </section>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Market Diner</h1>
+            <p>Authentic Seattle Dining Experience at Pike Place Market</p>
+            <a href="#menu" class="cta-button">View Our Menu</a>
+        </div>
+    </section>
 
-        <!-- Lunch Section -->
-        <section id="lunch" class="menu-section" style="display:none">
-            <h2>Lunch & Sandwiches</h2>
-            <p style="font-size:1.03rem;color:#666;margin-bottom:.5rem;">Served with choice of Fries or Caesar Salad. Substitute beer battered Onion Rings add $1 or Clam Chowder add $1.5</p>
-            <table class="menu-table">
-                <tbody>
-                    <tr><td>Cheeseburger <span style="font-size:.89rem;color:#999;font-weight:400;">(1/3 lb sirloin)</span></td><td class="price">$15.99</td></tr>
-                    <tr><td>Bacon Cheeseburger <span style="font-size:.89rem;color:#999;font-weight:400;">(1/3 lb sirloin)</span></td><td class="price">$16.99</td></tr>
-                    <tr><td>Swiss Mushroom Burger</td><td class="price">$16.99</td></tr>
-                    <tr><td>EK Double Stack Burger <span style="font-size:.89rem;color:#999;font-weight:400;">(1/3 lb sirloin)</span></td><td class="price">$17.99</td></tr>
-                    <tr><td>Grilled Chicken Burger</td><td class="price">$15.99</td></tr>
-                    <tr><td>Garden Burger</td><td class="price">$14.99</td></tr>
-                    <tr><td>Filet O Fish Burger</td><td class="price">$15.99</td></tr>
-                    <tr><td>Teriyaki Salmon Burger</td><td class="price">$17.99</td></tr>
-                    <tr><td>B.B.Q. Roasted Beef Burger</td><td class="price">$15.99</td></tr>
-                    <tr><td>Chicken Club Sandwich</td><td class="price">$16.99</td></tr>
-                    <tr><td>Philly Cheese Steak</td><td class="price">$18.99</td></tr>
-                    <tr><td>Grilled Cheese Sandwich</td><td class="price">$12.99</td></tr>
-                    <tr><td>BLT Sandwich</td><td class="price">$15.99</td></tr>
-                    <tr><td>Chicken Fingers</td><td class="price">$14.99</td></tr>
-                    <tr><td>French Dip</td><td class="price">$17.99</td></tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Seafood Section -->
-        <section id="seafood" class="menu-section" style="display:none">
-            <h2>Seafood</h2>
-            <p style="font-size:1.03rem;color:#666;margin-bottom:.4rem;">Served with choice of Fries or Caesar Salad. Substitute beer battered Onion Rings add $1 or Clam Chowder add $1.5</p>
-            <table class="menu-table">
-                <tbody>
-                    <tr><td>Fish & Chips</td><td class="price">$15.99</td></tr>
-                    <tr><td>Shrimps & Chips</td><td class="price">$15.99</td></tr>
-                    <tr><td>Salmon & Chips</td><td class="price">$16.99</td></tr>
-                    <tr><td>Fried Oysters & Chips</td><td class="price">$16.99</td></tr>
-                    <tr><td>Seafood Combo</td><td class="price">$19.99</td></tr>
-                    <tr><td>Salmon BLT</td><td class="price">$19.99</td></tr>
-                    <tr><td>Crab Sandwich</td><td class="price">$24.99</td></tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Salad Wraps Section -->
-        <section id="salad_wraps" class="menu-section" style="display:none">
-            <h2>Salad Wraps</h2>
-            <p style="font-size:1.03rem;color:#666;margin-bottom:.4rem;">Served with choice of Fries or Caesar Salad. Substitute beer battered Onion Rings add $1 or Clam Chowder add $1.5</p>
-            <table class="menu-table">
-                <tbody>
-                    <tr><td>Grilled Salmon Wrap</td><td class="price">$17.99</td></tr>
-                    <tr><td>Grilled Prawn Wrap</td><td class="price">$17.99</td></tr>
-                    <tr><td>Grilled Chicken Wrap</td><td class="price">$16.99</td></tr>
-                    <tr><td>Teriyaki Beef Wrap</td><td class="price">$17.99</td></tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Appetizers Section -->
-        <section id="appetizers" class="menu-section" style="display:none">
-            <h2>Appetizers</h2>
-            <table class="menu-table">
-                <tbody>
-                    <tr><td>Onion Rings</td><td class="price">$7.50</td></tr>
-                    <tr><td>Seasoned Fries</td><td class="price">$7.50</td></tr>
-                    <tr><td>Fried Calamari</td><td class="price">$9.99</td></tr>
-                    <tr><td>Clam Strips</td><td class="price">$9.99</td></tr>
-                    <tr><td>Prawn Skewers</td><td class="price">$9.99</td></tr>
-                    <tr><td>Spicy Wings (6 pc)</td><td class="price">$9.99</td></tr>
-                    <tr><td>Popcorn Shrimp</td><td class="price">$9.99</td></tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Soup & Salad Section -->
-        <section id="soup_salad" class="menu-section" style="display:none">
-            <h2>Soup & Salad</h2>
-            <p style="font-size:1.03rem;color:#666;margin-bottom:.6rem;">
-                Salad dressings include: Caesar, Blue Cheese, Ranch, and Balsamic Vinegar
-            </p>
-            <table class="menu-table">
-                <thead>
-                    <tr><th>Item</th><th class="price">Price</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Clam Chowder (Cup)</td><td class="price">$8.50</td></tr>
-                    <tr><td>Clam Chowder (Bowl)</td><td class="price">$12.50</td></tr>
-                    <tr><td>Caesar Salad (Half)</td><td class="price">$7.50</td></tr>
-                    <tr><td>Caesar Salad (Full)</td><td class="price">$10.50</td></tr>
-                    <tr><td>Tossed Salad (Half)</td><td class="price">$7.50</td></tr>
-                    <tr><td>Tossed Salad (Full)</td><td class="price">$10.50</td></tr>
-                    <tr><td>Grilled Chicken Salad</td><td class="price">$15.99</td></tr>
-                    <tr><td>Prawn Skewer Salad</td><td class="price">$16.99</td></tr>
-                    <tr><td>Grilled Salmon Salad</td><td class="price">$19.99</td></tr>
-                    <tr><td>Fresh Crabmeat Salad</td><td class="price">$24.99</td></tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Drinks Section -->
-        <section id="drinks" class="menu-section" style="display:none">
-            <h2>Drinks</h2>
-            <table class="menu-table">
-                <tbody>
-                    <tr><td>Coffee / Hot Tea</td><td class="price">$3.50</td></tr>
-                    <tr><td>Hot Cocoa</td><td class="price">$4.50</td></tr>
-                    <tr><td>Bottled Water</td><td class="price">$1.99</td></tr>
-                    <tr><td>Soda</td><td class="price">$3.50</td></tr>
-                    <tr><td>Italian Soda</td><td class="price">$6.50</td></tr>
-                    <tr><td>Iced Tea / Lemonade</td><td class="price">$5.50</td></tr>
-                    <tr><td>Orange / Apple Juice</td><td class="price">$3.50</td></tr>
-                    <tr><td>Cranberry Juice</td><td class="price">$3.50</td></tr>
-                    <tr><td>Milk Shake / Float</td><td class="price">$8.50</td></tr>
-                    <tr><td>Milk / Chocolate Milk</td><td class="price">$4.50</td></tr>
-                    <tr><td>Iced Coffee</td><td class="price">$5.50</td></tr>
-                    <tr><td>Affogato</td><td class="price">$8.50</td></tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Info Section -->
-        <section id="info" class="menu-section" style="display:none">
-            <h2>Contact & Location</h2>
-            <div class="address">
-                <span style="font-weight:bold">Address:</span>
-                1514 Pike Pl, Seattle, WA 98101, United States<br>
-                Pike Place Market
+    <!-- Info Cards -->
+    <section class="info-cards">
+        <div class="container">
+            <div class="cards-grid">
+                <div class="info-card loading">
+                    <i class="fas fa-clock"></i>
+                    <h3>Hours</h3>
+                    <p><strong>9:00 AM - 5:00 PM</strong><br>
+                    Closed on Tuesdays</p>
+                </div>
+                <div class="info-card loading">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>1514 Pike Pl<br>
+                    Seattle, WA 98101<br>
+                    Pike Place Market</p>
+                </div>
+                <div class="info-card loading">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Us</h3>
+                    <p><strong>(206) 624-1234</strong><br>
+                    For orders and reservations</p>
+                </div>
             </div>
-            <div class="contact">
-                <span style="font-weight:bold;">Phone:</span> (206) 624 - 1234
-            </div>
-            <div class="hours">
-                <span style="font-weight:bold;">Hours of Operation:</span><br>
-                9:00 AM – 5:00 PM
-            </div>
-            <div class="closed">
-                Closed on Tuesdays
-            </div>
-            <div class="note">
-                Parties of 6 or more will be charged 15% gratuity.
-            </div>
-            <img class="map" src="https://i.imgur.com/DxtAH0b.png" alt="Market Diner Seattle Map Location">
-        </section>
+        </div>
+    </section>
 
-    </div>
-    <div class="footer">
-        &copy; 2025 Market Diner | Pike Place Market, Seattle • All menu and hours subject to change. Website designed by Market Diner.<br>
-        <span style="color:var(--accent);font-size:.97rem;">Seattle's classic comfort food destination!</span>
-    </div>
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            
+            <div class="menu-tabs">
+                <button class="tab-button active" onclick="showMenu('appetizers')">Appetizers</button>
+                <button class="tab-button" onclick="showMenu('breakfast')">Breakfast</button>
+                <button class="tab-button" onclick="showMenu('lunch')">Lunch</button>
+                <button class="tab-button" onclick="showMenu('seafood')">Seafood</button>
+                <button class="tab-button" onclick="showMenu('soups')">Soups & Salads</button>
+                <button class="tab-button" onclick="showMenu('wraps')">Wraps</button>
+                <button class="tab-button" onclick="showMenu('drinks')">Drinks</button>
+            </div>
+
+            <div class="menu-content">
+                <!-- Appetizers -->
+                <div id="appetizers" class="menu-category active">
+                    <div class="menu-item">
+                        <span class="menu-item-name">Onion Rings</span>
+                        <span class="menu-item-price">$7.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Seasoned Fries</span>
+                        <span class="menu-item-price">$7.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Fried Calamari</span>
+                        <span class="menu-item-price">$9.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Clam Strips</span>
+                        <span class="menu-item-price">$9.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Prawn Skewers</span>
+                        <span class="menu-item-price">$9.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Spicy Wings (6 pc)</span>
+                        <span class="menu-item-price">$9.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Popcorn Shrimp</span>
+                        <span class="menu-item-price">$9.99</span>
+                    </div>
+                </div>
+
+                <!-- Breakfast -->
+                <div id="breakfast" class="menu-category">
+                    <h4 style="color: #ff6b6b; margin-bottom: 1rem; font-size: 1.2rem;">All breakfast items served with Hash Browns</h4>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Eggs Benedict*</span>
+                        <span class="menu-item-price">$19.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Crab Eggs Benedict*</span>
+                        <span class="menu-item-price">$24.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Salmon Benedict*</span>
+                        <span class="menu-item-price">$21.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Denver Omelette</span>
+                        <span class="menu-item-price">$18.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Cheese Omelette</span>
+                        <span class="menu-item-price">$15.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Crab Avocado Omelette</span>
+                        <span class="menu-item-price">$24.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Bacon & Eggs*</span>
+                        <span class="menu-item-price">$16.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Pancakes & Eggs*</span>
+                        <span class="menu-item-price">$15.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">French Toast & Eggs*</span>
+                        <span class="menu-item-price">$15.99</span>
+                    </div>
+                    
+                    <h4 style="color: #ff6b6b; margin: 2rem 0 1rem 0; font-size: 1.2rem;">Breakfast Sides</h4>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Eggs*</span>
+                        <span class="menu-item-price">$7.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Bacon, sausage or ham</span>
+                        <span class="menu-item-price">$7.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Hash Browns</span>
+                        <span class="menu-item-price">$6.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Pancakes</span>
+                        <span class="menu-item-price">$9.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">French Toast</span>
+                        <span class="menu-item-price">$9.50</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">*Eggs are served under cooked or cooked to order.</p>
+                </div>
+
+                <!-- Lunch -->
+                <div id="lunch" class="menu-category">
+                    <h4 style="color: #ff6b6b; margin-bottom: 1rem; font-size: 1.2rem;">Served with choice of Fries or Caesar Salad. Substitute beer battered Onion Rings add $1 or Clam Chowder add $1.5</h4>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Cheeseburger**</span>
+                        <span class="menu-item-price">$15.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Bacon Cheeseburger**</span>
+                        <span class="menu-item-price">$16.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Swiss Mushroom Burger**</span>
+                        <span class="menu-item-price">$16.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">EK Double Stack Burger**</span>
+                        <span class="menu-item-price">$17.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Grilled Chicken Burger</span>
+                        <span class="menu-item-price">$15.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Garden Burger</span>
+                        <span class="menu-item-price">$14.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Filet O Fish Burger</span>
+                        <span class="menu-item-price">$15.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Teriyaki Salmon Burger</span>
+                        <span class="menu-item-price">$17.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">B.B.Q. Roasted Beef Burger</span>
+                        <span class="menu-item-price">$15.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Chicken Club Sandwich</span>
+                        <span class="menu-item-price">$16.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Philly Cheese Steak</span>
+                        <span class="menu-item-price">$18.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Grilled Cheese Sandwich</span>
+                        <span class="menu-item-price">$12.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">BLT Sandwich</span>
+                        <span class="menu-item-price">$15.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Chicken Fingers</span>
+                        <span class="menu-item-price">$14.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">French Dip</span>
+                        <span class="menu-item-price">$17.99</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">**1/3 pound sirloin patty</p>
+                </div>
+
+                <!-- Seafood -->
+                <div id="seafood" class="menu-category">
+                    <h4 style="color: #ff6b6b; margin-bottom: 1rem; font-size: 1.2rem;">Served with choice of Fries or Caesar Salad. Substitute beer battered Onion Rings add $1 or Clam Chowder add $1.5</h4>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Fish & Chips</span>
+                        <span class="menu-item-price">$15.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Shrimps & Chips</span>
+                        <span class="menu-item-price">$15.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Salmon & Chips</span>
+                        <span class="menu-item-price">$16.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Fried Oysters & Chips</span>
+                        <span class="menu-item-price">$16.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Seafood Combo</span>
+                        <span class="menu-item-price">$19.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Salmon BLT</span>
+                        <span class="menu-item-price">$19.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Crab Sandwich</span>
+                        <span class="menu-item-price">$24.99</span>
+                    </div>
+                </div>
+
+                <!-- Soups & Salads -->
+                <div id="soups" class="menu-category">
+                    <h4 style="color: #ff6b6b; margin-bottom: 1rem; font-size: 1.2rem;">Salad dressing include: Caesar, Blue Cheese, Ranch and Balsamic Vinegar</h4>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Clam Chowder</span>
+                        <div class="menu-item-prices">
+                            <span class="menu-item-price">Cup $8.50</span>
+                            <span class="menu-item-price">Bowl $12.50</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Caesar Salad</span>
+                        <div class="menu-item-prices">
+                            <span class="menu-item-price">Half $7.50</span>
+                            <span class="menu-item-price">Full $10.50</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Tossed Salad</span>
+                        <div class="menu-item-prices">
+                            <span class="menu-item-price">Half $7.50</span>
+                            <span class="menu-item-price">Full $10.50</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Grilled Chicken Salad</span>
+                        <span class="menu-item-price">$15.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Prawn Skewer Salad</span>
+                        <span class="menu-item-price">$16.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Grilled Salmon Salad</span>
+                        <span class="menu-item-price">$19.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Fresh Crabmeat Salad</span>
+                        <span class="menu-item-price">$24.99</span>
+                    </div>
+                </div>
+
+                <!-- Salad Wraps -->
+                <div id="wraps" class="menu-category">
+                    <h4 style="color: #ff6b6b; margin-bottom: 1rem; font-size: 1.2rem;">Served with choice of Fries or Caesar Salad. Substitute beer battered Onion Rings add $1 or Clam Chowder add $1.5</h4>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Grilled Salmon Wrap</span>
+                        <span class="menu-item-price">$17.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Grilled Prawn Wrap</span>
+                        <span class="menu-item-price">$17.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Grilled Chicken Wrap</span>
+                        <span class="menu-item-price">$16.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Teriyaki Beef Wrap</span>
+                        <span class="menu-item-price">$17.99</span>
+                    </div>
+                </div>
+
+                <!-- Drinks -->
+                <div id="drinks" class="menu-category">
+                    <div class="menu-item">
+                        <span class="menu-item-name">Coffee / Hot Tea</span>
+                        <span class="menu-item-price">$3.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Hot Cocoa</span>
+                        <span class="menu-item-price">$4.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Bottled Water</span>
+                        <span class="menu-item-price">$1.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Soda</span>
+                        <span class="menu-item-price">$3.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Italian Soda</span>
+                        <span class="menu-item-price">$6.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Iced Tea / Lemonade</span>
+                        <span class="menu-item-price">$5.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Orange / Apple Juice</span>
+                        <span class="menu-item-price">$3.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Cranberry Juice</span>
+                        <span class="menu-item-price">$3.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Milk Shake / Float</span>
+                        <span class="menu-item-price">$8.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Milk / Chocolate Milk</span>
+                        <span class="menu-item-price">$4.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Iced Coffee</span>
+                        <span class="menu-item-price">$5.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="menu-item-name">Affogato</span>
+                        <span class="menu-item-price">$8.50</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title" style="color: #333;">Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Visit Us</h3>
+                    <p>1514 Pike Pl<br>
+                    Seattle, WA 98101<br>
+                    Pike Place Market</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Us</h3>
+                    <p>(206) 624-1234</p>
+                    <p style="font-size: 0.9rem; margin-top: 1rem;">For orders and reservations</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Hours</h3>
+                    <p><strong>Monday, Wednesday - Sunday</strong><br>
+                    9:00 AM - 5:00 PM<br>
+                    <strong>Tuesday:</strong> Closed</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Groups</h3>
+                    <p>Parties of 6 or more will be charged 15% gratuity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Market Diner. All rights reserved. | Located in the heart of Pike Place Market, Seattle</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Menu Tab Functionality
+        function showMenu(category) {
+            // Hide all menu categories
+            const categories = document.querySelectorAll('.menu-category');
+            categories.forEach(cat => cat.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected category
+            document.getElementById(category).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Loading Animation for Info Cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('loading');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.info-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add scroll effect to header
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
 </body>
 </html>
